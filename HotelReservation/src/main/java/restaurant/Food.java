@@ -1,9 +1,19 @@
 package restaurant;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "food")
 public class Food {
 	
+	@Id
+	@Column(name = "id")
 	private String id;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "price")
 	private double price;
 	
 	public Food(String id, String name, double price) {

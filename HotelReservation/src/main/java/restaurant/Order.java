@@ -3,13 +3,30 @@ package restaurant;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "order")
 public class Order implements CRUD<Food> {
 
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	private Table table;
+	
+	@Column(name = "table_id")
+	private Tables table;
+	
+	@Column(name = "food_id")
 	private List<Food> foodList;
 	
-	public Order(int id, Table table) {
+	public Order(int id, Tables table) {
 		this.id = id;
 		this.table = table;
 		foodList = new ArrayList<Food>();
