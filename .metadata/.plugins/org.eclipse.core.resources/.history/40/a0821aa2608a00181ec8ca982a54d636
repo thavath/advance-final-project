@@ -1,0 +1,229 @@
+package AdvanceProject.HotelReservation;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.*;
+
+import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
+
+/**
+ * Hello world!
+ *
+ */
+public class App extends JFrame implements ActionListener
+{
+	JMenuBar menuBar;
+	JMenu mFile, mTable, mFood, mReservation, mOrder, mHelp;
+	// For Menu File
+	JMenuItem mItemNew, mItemSave, mItemExit, mItemEdit;
+	// For Menu Table Mgt
+	JMenuItem mItemNewTable, mItemListTable;
+	// For Menu Food
+	JMenuItem mItemNewFood, mItemListFood;
+	// For Menu Order
+	JMenuItem mItemListOrder, mItemTakeOrder;
+	// For Menu Reservation;
+	JMenuItem mItemTakeReservation, mItemReservationList;
+	// For Menu Help;
+	JMenuItem mItemWelcome, mItemHelpContents, mItemCheckUpdate, mItemAbout;
+	// JTree
+	JTree jTreeHotel;
+	
+	JTabbedPane jTab;
+	
+	public App() {
+		
+		mItemNew = new JMenuItem("New");
+		mItemExit = new JMenuItem("Exit");
+		mItemSave = new JMenuItem("Save");
+		mItemEdit = new JMenuItem("Edit");
+		//Create object Menu File and add its items
+		mFile = new JMenu("File");
+		mFile.add(mItemNew);
+		mFile.add(mItemEdit);
+
+		mFile.add(new JSeparator());
+		mFile.add(mItemSave);
+		mFile.add(mItemExit);
+		//==========================END MENU FILE =====================/
+		
+		//Create Object Menu Item of Table Mgt
+		mItemNewTable = new JMenuItem("New Table");
+		mItemNewTable.addActionListener(this);
+		mItemListTable = new JMenuItem("List Table");
+		mItemListTable.addActionListener(this);
+		
+		//Create Object Menu Table Mgt and add its items
+		mTable = new JMenu("Table Info");
+		mTable.add(mItemNewTable);
+		mTable.add(mItemListTable);
+		//==========================END MENU Table ==================/
+		
+		//Create Object Menu Item of Food
+		mItemNewFood = new JMenuItem("New Food");
+		mItemNewFood.addActionListener(this);
+
+		mItemListFood = new JMenuItem("List Food");
+		mItemListFood.addActionListener(this);
+		
+		
+		//Create Object Menu Report add add its items
+		mFood = new JMenu("Food Info");
+		mFood.add(mItemNewFood);
+		mFood.add(mItemListFood);
+		
+		// ==========================================================
+		mItemTakeOrder = new JMenuItem("Take Order");
+		mItemTakeOrder.addActionListener(this);
+		mItemListOrder = new JMenuItem("List Order");
+		mItemListOrder.addActionListener(this);
+		mOrder = new JMenu("Order");
+		mOrder.add(mItemTakeOrder);
+		mOrder.add(mItemListOrder);
+		
+		//=========================END MENU Food ======================/
+		//Create Object Menu item of Order Rule
+		mItemTakeReservation = new JMenuItem("Take Reservation");
+		mItemTakeReservation.addActionListener(this);
+		mItemReservationList = new JMenuItem("List Reservation");
+		mItemReservationList.addActionListener(this);
+		//Create Object menu reservation list and add its items
+		mReservation = new JMenu("Reservation");
+		mReservation.add(mItemTakeReservation);
+		mReservation.add(mItemReservationList);
+		//==========================END MENU Reservation===================/
+		//Create Object Menu Item of Help
+		mItemWelcome = new JMenuItem("Welcome");
+		mItemHelpContents = new JMenuItem("Help Contents");		
+		mItemCheckUpdate = new JMenuItem("Check Update");
+		mItemAbout = new JMenuItem("About Restaurant Reservation");
+		//Create Object Menu Help and add its items
+		mHelp = new JMenu("Help");
+		mHelp.add(mItemWelcome);
+		mHelp.add(mItemHelpContents);
+		mHelp.add(new JSeparator());
+		mHelp.add(mItemCheckUpdate);
+		mHelp.add(mItemAbout);
+		//==========================END MENU HELP======================/
+		//Create object menu bar and add its menus
+		menuBar = new JMenuBar();
+		menuBar.add(mFile); //Add File
+		menuBar.add(mTable); //Add Table
+		menuBar.add(mFood); //Add Food
+		menuBar.add(mOrder); //Add Order
+		menuBar.add(mReservation); //Add Reservation
+		menuBar.add(mHelp); // Add Help
+		//=========================END MENU BAR======================/
+		
+		JTree leftJTree = createJTree();
+		//JPanel rightPanel = new JPanel();
+		//rightPanel.add(new JLabel("RIGHT"));
+		jTab = new JTabbedPane();
+		
+		JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, true, leftJTree, jTab);
+		jsp.setDividerLocation(180);
+		
+		add(menuBar);
+		add(jsp);
+		setTitle("Hotel Reservation Management");
+		setJMenuBar(menuBar);
+		setExtendedState(MAXIMIZED_BOTH);
+		setVisible(true);
+		
+	}
+	private JTree createJTree() {
+		//JPanel leftPanel = new JPanel();
+		// Create Tree Root Node
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Root Node");
+		// Create Tree Node Employee Mgt
+		DefaultMutableTreeNode nodeEmpMgt = new DefaultMutableTreeNode("Table Info");
+		// Create Tree Node Add Employee
+		DefaultMutableTreeNode nodeAddEmp = new DefaultMutableTreeNode("New Table");
+		// Create Tree Node List Employee
+		DefaultMutableTreeNode nodeListEmp = new DefaultMutableTreeNode("List Table");
+		nodeEmpMgt.add(nodeAddEmp);
+		nodeEmpMgt.add(nodeListEmp);
+		//================================END TREE NODE of EMPLOYEE LIST=========//
+		
+		// Create Tree Node Report
+		DefaultMutableTreeNode nodeReport = new DefaultMutableTreeNode("Food Info");
+		// Create Tree Node Employee Tax Report
+		DefaultMutableTreeNode nodeEmpTaxReport = new DefaultMutableTreeNode("New Food");
+
+		DefaultMutableTreeNode nodeEmpTaxReport1 = new DefaultMutableTreeNode("List Food");
+		
+		nodeReport.add(nodeEmpTaxReport);
+		nodeReport.add(nodeEmpTaxReport1);
+		
+		//================================ END TREE NODE of REPORT =========//
+		
+		// Create Tree Node Tax Rule
+		DefaultMutableTreeNode nodeReservation = new DefaultMutableTreeNode("Reservation");
+		// Create Tree Node Tax Rule 2018
+		DefaultMutableTreeNode nodeOrderList = new DefaultMutableTreeNode("Order List");
+		// Create Tree Node Tax Calculator
+		DefaultMutableTreeNode nodeReservationList = new DefaultMutableTreeNode("Reservation List");
+		nodeReservation.add(nodeOrderList);
+		nodeReservation.add(nodeReservationList);
+		//================================ END TREE NODE of TAX RULE =========//
+		
+		rootNode.add(nodeEmpMgt);
+		rootNode.add(nodeReport);
+		rootNode.add(nodeReservation);
+		
+		// Create object of JTree Employee Mgt
+		jTreeHotel = new JTree(rootNode);
+		jTreeHotel.setRowHeight(25);
+		jTreeHotel.setRootVisible(false);
+		jTreeHotel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		// Add mouse listener to tree
+		jTreeHotel.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				// Find selected node of tree
+				int selectedNode = jTreeHotel.getRowForLocation(e.getX(), e.getY());
+				// Condition when mouse pressed on a specific node
+				if(selectedNode != -1) {
+					// When mouse pressed is double clicked
+					if(e.getClickCount() == 2) {
+						//Get for whole tree path
+						TreePath treePath = jTreeHotel.getPathForLocation(e.getX(), e.getY());
+						//Get last selected tree path
+						String lastSelectedPath = treePath.getLastPathComponent().toString();
+						if(lastSelectedPath.equals("Add Employee")) {
+//							performOpenEmployee();
+						}else if (lastSelectedPath.equals("List Employee")) {
+//							performOpenEmployee();
+						}else if (lastSelectedPath.equals("Employee Tax Report")) {
+//							performOpenTaxReport();
+						}else if (lastSelectedPath.equals("Tax Rule 2018")) {
+//							performOpenTaxRule2018();
+						}else if (lastSelectedPath.equals("Tax Calculator")) {
+//							performOpenTaxCalculator();
+						}
+						
+					}
+				}
+			}
+		});
+		// Expand all tree nodes
+		for(int i =0; i<=jTreeHotel.getRowCount(); i++)
+			jTreeHotel.expandRow(i);
+		// Add tree to panel
+		//leftPanel.add(jTreeEmp);
+		return jTreeHotel;
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+    public static void main( String[] args )
+    {
+    	new App();
+    }
+}
