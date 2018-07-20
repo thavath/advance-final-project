@@ -9,7 +9,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		HashMap<String, Table> tableList = new HashMap<String, Table>();
+		HashMap<String, Tables> tableList = new HashMap<String, Tables>();
 		HashMap<String, Food> foodList = new HashMap<String, Food>();
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		Reservation reservation = new Reservation();
@@ -41,7 +41,7 @@ public class Main {
 						int numOfSeat = sc.nextInt();
 						sc.nextLine();
 						// Create object of table
-						Table tb = new Table(numOfSeat, tableNo, true);
+						Tables tb = new Tables(numOfSeat, tableNo, true);
 						tableList.put(tableNo, tb);
 						System.out.println("---------------------------------------------------");
 						System.out.println("Do you want to add more table? (Y/N)");
@@ -53,7 +53,7 @@ public class Main {
 					System.out.println("----------------- Table List --------------------\n");
 					System.out.println("[No              NumberOfSeats              Status]");
 					System.out.println("---------------------------------------------------");
-					for(Table tb : tableList.values()){
+					for(Tables tb : tableList.values()){
 						System.out.println(tb.toString());
 					}
 					System.out.println("---------------------------------------------------");
@@ -107,7 +107,7 @@ public class Main {
 							System.out.println("Enter table number you want to reserve: ");
 							String tNo = sc.nextLine();
 							if(tableList.containsKey(tNo)) {
-								Table reservedTable = tableList.get(tNo);
+								Tables reservedTable = tableList.get(tNo);
 								if(reservedTable.getOccupied()) {
 									//Set reservation to table
 									newBooking.setReservedTable(reservedTable);
@@ -143,7 +143,7 @@ public class Main {
 						System.out.println("Enter table number you want to order: ");
 						String tNo = sc.nextLine();
 						if(tableList.containsKey(tNo)) {
-							Table orderedTable = tableList.get(tNo);
+							Tables orderedTable = tableList.get(tNo);
 							//create object order
 							Order newOrder = new Order(orderNo, orderedTable);
 							if(orderedTable.getOccupied()) {
