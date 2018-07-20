@@ -4,14 +4,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+<<<<<<< HEAD
+=======
+import java.awt.BorderLayout;
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 import java.awt.event.*;
 import java.awt.*;
 
 import javax.swing.*;
+<<<<<<< HEAD
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+=======
+import javax.swing.border.TitledBorder;
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
@@ -25,7 +33,11 @@ public class App extends JFrame implements ActionListener
 	JMenu mFile, mTable, mFood, mReservation, mOrder, mHelp;
 	// For Menu File
 	JMenuItem mItemNew, mItemSave, mItemExit, mItemEdit;
+<<<<<<< HEAD
 	// For Menu Table
+=======
+	// For Menu Table Mgt
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 	JMenuItem mItemNewTable, mItemListTable;
 	// For Menu Food
 	JMenuItem mItemNewFood, mItemListFood;
@@ -37,11 +49,16 @@ public class App extends JFrame implements ActionListener
 	JMenuItem mItemWelcome, mItemHelpContents, mItemCheckUpdate, mItemAbout;
 	// JTree
 	JTree jTreeRestaurant;
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 	JTabbedPane jTab;
 	
 	// Table Item
 	JButton btnTableSave, btnTableClear, btnTableEdit, btnTableDelete, btnTableUpdate;
 	JTextField txtTableID, txtTableSeats, txtTableStatus;
+<<<<<<< HEAD
 	DefaultTableModel tbModel;
 	JTable tbListTable;
 	
@@ -63,6 +80,16 @@ public class App extends JFrame implements ActionListener
 	JComboBox jbcReservationTableID;
 	DefaultTableModel tbReservationModel;
 	JTable tbReservation;
+=======
+	// Food Button
+	JButton btnFoodSave, btnFoodClear, btnFoodEdit, btnFoodDelete, btnFoodUpdate;
+	
+	// Order Button
+	JButton btnOrderSave, btnOrderClear, btnOrderEdit, btnOrderDelete, btnOrderUpdate;
+	
+	// Reservation Button
+	JButton btnReservationSave, btnReservationClear, btnReservationEdit, btnReservationDelete, btnReservationUpdate;
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 	
 	public App() {
 		
@@ -163,6 +190,7 @@ public class App extends JFrame implements ActionListener
 		setVisible(true);
 		
 	}
+<<<<<<< HEAD
 // Start Block Reservation ==================================================================================
 		private JPanel openReservationSection_NewReservation(JPanel newReservation) {
 			
@@ -426,12 +454,16 @@ public class App extends JFrame implements ActionListener
 	}
 // Finished Food Block ========================================================================================== 
 // Table block ===================================================================================================
+=======
+	
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 	private JPanel openTableSection_NewTable(JPanel tableNew) {
 		// Create Group Box - New Employee
 		TitledBorder tBorderNewTable = BorderFactory.createTitledBorder("CREATE NEW TABLE");
 		tBorderNewTable.setTitleJustification(TitledBorder.CENTER);
 		tableNew.setBorder(tBorderNewTable);
 		//Create Block All Info
+<<<<<<< HEAD
 		JPanel blockTableInfo = new JPanel(new GridLayout(5,2));
 //		JPanel blockEmpInfo = new JPanel(new GridLayout(6,2,10,10));
 		blockTableInfo.add(new JLabel("Table ID :"));
@@ -445,10 +477,37 @@ public class App extends JFrame implements ActionListener
 		
 		JPanel blockTable = new JPanel(new CardLayout(50,200));
 		blockTable.add(blockTableInfo);
+=======
+		JPanel blockTableInfo = new JPanel(new GridLayout(4,2));
+//		JPanel blockEmpInfo = new JPanel(new GridLayout(6,2,10,10));
+		blockTableInfo.add(new JLabel("Table ID :"));
+		blockTableInfo.add(txtTableID = new JTextField(12));
+
+		blockTableInfo.add(new JLabel());
+		blockTableInfo.add(new JLabel());
+		
+		blockTableInfo.add(new JLabel("Total Seats:"));
+		blockTableInfo.add(txtTableSeats = new JTextField(12));
+
+		blockTableInfo.add(new JLabel());
+		blockTableInfo.add(new JLabel());
+		// Create Block Employee Info - FINAL
+		JPanel blockAllInfo = new JPanel(new GridLayout(3,1));
+		blockAllInfo.add(new JLabel("Create New Table"));
+		blockAllInfo.add(new JSeparator());
+		blockAllInfo.add(blockTableInfo);
+		//Create Block All Info - FINAL
+		JPanel blockAllInfo_FINAL = new JPanel(new GridLayout(3,1));
+		blockAllInfo_FINAL.add(blockAllInfo);
+		blockAllInfo_FINAL.add(new JSeparator());
+		// Button FlowLayout
+		//=============================================
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 		JPanel actionBtnPanel = new JPanel(new FlowLayout());
 		actionBtnPanel.add(btnTableSave = new JButton("SAVE"));
 		btnTableSave.addActionListener(this);
 		actionBtnPanel.add(btnTableClear = new JButton("CLEAR"));
+<<<<<<< HEAD
 		
 
 		blockTableInfo.add(new JLabel());
@@ -497,12 +556,21 @@ public class App extends JFrame implements ActionListener
 		return ListTableFinal;
 	}
 	
+=======
+		//=============================================
+		blockAllInfo_FINAL.add(actionBtnPanel);
+		return blockAllInfo_FINAL;
+	}
+	
+	
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 	private void openTableSection() {
 		JPanel tablePanel = new JPanel(new GridLayout(1,2));
 		JPanel tableList = new JPanel(new BorderLayout(10,10));
 		JPanel tableNew = new JPanel(new CardLayout(10,10));
 
 		tableNew.add(openTableSection_NewTable(tableNew));
+<<<<<<< HEAD
 		tableList.add(openTableSection_ListTable(tableList), BorderLayout.CENTER);
 //		tableList.add(openTableSection_ListTable(tableList));
 		
@@ -516,6 +584,18 @@ public class App extends JFrame implements ActionListener
 	
 //===============================================================================================================
 	// JTReeeeeee
+=======
+		tableList.add(new JLabel("Hello List "));
+//		tableList.add(openTableSection_ListTable(tableList));
+
+		tablePanel.add(new JScrollPane(tableNew));
+		tablePanel.add(new JScrollPane(tableList));
+		
+		jTab.addTab("Table Information", tablePanel);
+		jTab.setSelectedComponent(tablePanel);
+	}
+	
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 	private JTree createJTree() {
 		//JPanel leftPanel = new JPanel();
 		// Create Tree Root Node
@@ -590,6 +670,7 @@ public class App extends JFrame implements ActionListener
 						}else if (lastSelectedPath.equals("List Table")) {
 							openTableSection();
 						}else if (lastSelectedPath.equals("New Food")) {
+<<<<<<< HEAD
 							openFoodSection();
 						}else if (lastSelectedPath.equals("List Food")) {
 							openFoodSection();
@@ -601,6 +682,19 @@ public class App extends JFrame implements ActionListener
 							openReservationSection();
 						}else if (lastSelectedPath.equals("List Reservation")) {
 							openReservationSection();
+=======
+//							performOpenTaxReport();
+						}else if (lastSelectedPath.equals("List Food")) {
+//							performOpenTaxRule2018();
+						}else if (lastSelectedPath.equals("Take Order")) {
+//							performOpenTaxCalculator();
+						}else if (lastSelectedPath.equals("List Order")) {
+//							performOpenTaxCalculator();
+						}else if (lastSelectedPath.equals("Take Reservation")) {
+//							performOpenTaxCalculator();
+						}else if (lastSelectedPath.equals("List Reservation")) {
+//							performOpenTaxCalculator();
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 						}
 						
 					}
@@ -621,6 +715,7 @@ public class App extends JFrame implements ActionListener
 		}else if (e.getSource() == mItemListTable) {
 			openTableSection();
 		}else if (e.getSource() == mItemNewFood) {
+<<<<<<< HEAD
 			openFoodSection();
 		}else if(e.getSource() == mItemListFood) {
 			openFoodSection();
@@ -632,6 +727,19 @@ public class App extends JFrame implements ActionListener
 			openReservationSection();
 		}else if(e.getSource() == mItemReservationList) {
 			openReservationSection();
+=======
+//			performOpenTaxReport();
+		}else if(e.getSource() == mItemListFood) {
+//			performOpenTaxRule2018();
+		}else if(e.getSource() == mItemTakeOrder) {
+//			performOpenTaxCalculator();
+		}else if(e.getSource() == mItemListOrder) {
+//			performOpenTaxCalculator();
+		}else if(e.getSource() == mItemTakeReservation) {
+//			performOpenTaxCalculator();
+		}else if(e.getSource() == mItemReservationList) {
+//			performOpenTaxCalculator();
+>>>>>>> 5128759f5a2a66499f8c0c737ccd30f0fb7ddddd
 		}
 	}
 	
