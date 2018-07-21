@@ -38,7 +38,6 @@ public class App extends JFrame implements ActionListener
 	// JTree
 	JTree jTreeRestaurant;
 	JTabbedPane jTab;
-	
 	// Table Item
 	JButton btnTableSave, btnTableClear, btnTableEdit, btnTableDelete, btnTableUpdate;
 	JTextField txtTableID, txtTableSeats, txtTableStatus;
@@ -213,12 +212,11 @@ public class App extends JFrame implements ActionListener
 			
 			reservationPanel.add(reservationList);
 			reservationPanel.add(reservationNew);
-			JPanel table = new JPanel(new CardLayout(10,10));
-			table.add(reservationPanel);
-			jTab.addTab("Reservation Information", table);
-			jTab.setSelectedComponent(table);
+			JPanel reservation = new JPanel(new CardLayout(10,10));
+			reservation.add(reservationPanel);
+			jTab.addTab("Reservation Information", reservation); 
+			jTab.setSelectedComponent(reservation);
 		}	
-		
 		private JPanel openReservationSection_ListReservation(JPanel reservationList) {
 			
 			TitledBorder tBorderListEmp = BorderFactory.createTitledBorder("LIST OF RESERVATION");

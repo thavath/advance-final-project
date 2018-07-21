@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,7 +25,8 @@ public class Order implements CRUD<Food> {
 	@Column(name = "table_id")
 	private Tables table;
 	
-	@Column(name = "food_id")
+	@ManyToOne
+	@JoinColumn(name ="food_id")
 	private List<Food> foodList;
 	
 	public Order(int id, Tables table) {

@@ -8,10 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "table")
+@Table(name = "tables")
 public class Tables {
 	
-
 	@Id
 	@Column(name = "id")
 	private String id;
@@ -20,8 +19,8 @@ public class Tables {
 	private int numSeats;
 	
 	@Column(name = "available")
-	private boolean available;
-
+	private boolean available = true;
+	public Tables () {}
 	public Tables(int numSeats, String id, boolean available) {
 		this.numSeats = numSeats;
 		this.id = id;
@@ -39,7 +38,11 @@ public class Tables {
 	public String getID() {
 		return this.id;
 	}
-	
+	public String[] toStringData() {
+		String tableStatus = this.available? "Free" : "Busy";
+		String tables[] = {this.id,this.numSeats+"",tableStatus+"" };
+		return tables;
+	}
 	public String toString() {
 		String tableStatus = this.available? "Free" : "Busy";
 		return "'Table#" + this.id + "'   'Seats: " + this.numSeats + "'   '" + tableStatus + "'\n"; 

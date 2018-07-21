@@ -1,0 +1,5 @@
+package AdvanceProject.HotelReservation;
+
+public class Test {
+	String[] list = {"Abc", "AAA", "BBB", "CCC"};
+}

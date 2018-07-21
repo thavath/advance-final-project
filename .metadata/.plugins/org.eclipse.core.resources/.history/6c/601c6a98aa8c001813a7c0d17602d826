@@ -1,0 +1,33 @@
+package restaurant;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name ="booking")
+public class Booking {
+	
+
+	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="id")
+	private int id;
+	
+	@Column(name ="customerName")
+	private String customerName;
+	
+	@Column(name = "contactNo")
+	private String contactNo;
+
+	public Booking(int id, String cusName, String contactNo) {
+		this.id = id;
+		this.customerName = cusName;
+		this.contactNo = contactNo;
+	}
+	
+	public int getBookingID() {
+		return this.id;
+	}	
+}

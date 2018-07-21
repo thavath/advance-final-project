@@ -11,12 +11,9 @@ public class Booking {
 	
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="id")
 	private int id;
-	
-	@Column(name ="tabel_id")
-	private List<Tables> reservedTables;
 	
 	@Column(name ="customerName")
 	private String customerName;
@@ -28,28 +25,34 @@ public class Booking {
 		this.id = id;
 		this.customerName = cusName;
 		this.contactNo = contactNo;
-		this.reservedTables = new ArrayList<Tables>();
 	}
 	
-	public List<Tables> getReservedTables(){
-		return this.reservedTables;
+	public String[] toStringData() {
+		
+		String booking[] = {this.id+"",this.customerName,this.contactNo };
+		
+		return booking;
 	}
 	
-	public void setReservedTable(Tables tb) {
-		tb.setOccupied(false);
-		this.reservedTables.add(tb);
-	}
 	
 	public int getBookingID() {
 		return this.id;
 	}
-	
-	public String toString() {
-		String tableNo = "";
-		for(Tables t: this.reservedTables) {
-			tableNo += "#" + t.getID() + " ";
-		}
-		return this.id + ".    '" + this.customerName + "'     '" + this.contactNo + "'    '" + tableNo + "'\n";
+
+	public String getCustomerName() {
+		return customerName;
 	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public String getContactNo() {
+		return contactNo;
+	}
+
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
+	}	
 	
 }
