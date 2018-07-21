@@ -683,10 +683,16 @@ public class MainRun extends JFrame implements ActionListener
 		}else if(e.getSource() == mItemTakeReservation) {
 			openReservationSection();
 			retrieveTable();
+			createReservation_save();
+			createBookingDetail();
+			clearReservation_fields();
 			retrieveReservation();
 		}else if(e.getSource() == mItemReservationList) {
 			openReservationSection();
 			retrieveTable();
+			createReservation_save();
+			createBookingDetail();
+			clearReservation_fields();
 			retrieveReservation();
 		}
 		else if(e.getSource() == btnFoodSave) {
@@ -928,12 +934,12 @@ public class MainRun extends JFrame implements ActionListener
 				.buildSessionFactory();
 		Session sessionDetail = factoryDetail.getCurrentSession();
 		
-//		SessionFactory factoryT =  new Configuration()
-//				.configure("hibernate.cfg.xml")
-//				.addAnnotatedClass(Tables.class)
-//				.buildSessionFactory();
-//		Session sessionT = factoryT.getCurrentSession();
-//	
+		SessionFactory factoryT =  new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Tables.class)
+				.buildSessionFactory();
+		Session sessionT = factoryT.getCurrentSession();
+	
 		tbReservationModel = (DefaultTableModel) tbReservation.getModel();
 		while(tbReservationModel.getRowCount()>0)
 			tbReservationModel.removeRow(0);
@@ -941,30 +947,31 @@ public class MainRun extends JFrame implements ActionListener
 			
 			session.beginTransaction();
 			sessionDetail.beginTransaction();
-//			sessionT.beginTransaction();
+			sessionT.beginTransaction();
 			Query queryResult = session.createQuery("from Booking");
 			Query queryDedail = sessionDetail.createQuery("from BookingDetail");
-//			Query queryBdetail = sessionT.createQuery("from Tables");
+			Query queryBdetail = sessionT.createQuery("from Tables");
 			
 			
 			List<Booking> bookingList  = queryResult.getResultList();
 			List<BookingDetail> bDetailList = queryDedail.getResultList();
-//			List<Tables> tList = queryBdetail.getResultList();
+			List<Tables> tList = queryBdetail.getResultList();
 			
 			for (Booking b : bookingList) {
 				for (BookingDetail bD : bDetailList) {
-//   for ( : tList) {
+					for (Tables t : tList) {
 //						if(bD.getReservedbTableID().equals(t.getID())){
 //							 
 //						}
+						String[] tabl = { b.getBookingID() +"",b.getCustomerName(), b.getContactNo() , t.getID()};
+						tbReservationModel.addRow(tabl);
 					
-					String[] tabl = { b.getBookingID() +"",b.getCustomerName(), b.getContactNo() , bD.getReservedbTableID()};
-					tbReservationModel.addRow(tabl);
+					}
 				}
 			}
 			session.getTransaction().commit();
 			sessionDetail.getTransaction().commit();
-//			sessionT.getTransaction().commit();
+			sessionT.getTransaction().commit();
 			
 			System.out.println("Database contents delivered... from Reservation");
 		} catch (Exception e) {
@@ -973,7 +980,7 @@ public class MainRun extends JFrame implements ActionListener
 		finally {
 			factoryReservation.close();
 			factoryDetail.close();
-//			factoryT.close();
+			factoryT.close();
 		}
 			
 		
